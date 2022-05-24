@@ -96,6 +96,31 @@ local mappings = {
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
+	d = {
+		name = "Debug",
+		R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
+		E = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
+		C = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", "Conditional Breakpoint" },
+		U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
+		b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+		c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+		d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+		e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+		g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+		h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
+		S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
+		i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+		o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+		p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
+		q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
+		r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+		s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+		t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+		T = { "<cmd>Telescope dap<cr>", "Telescope" },
+		x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
+		u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+	},
+
 	p = {
 		name = "Packer",
 		c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -142,37 +167,39 @@ local mappings = {
 
 	l = {
 		name = "LSP",
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		d = {
+		a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
+		t = {
 			"<cmd>TroubleToggle<cr>",
 			"Trouble",
+		},
+		d = {
+			"<cmd>Lspsaga preview_definition<cr>",
+			"Definition",
 		},
 
 		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = {
-			"<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+			"<cmd>Lspsaga diagnostic_jump_next<CR>",
 			"Next Diagnostic",
 		},
 		k = {
-			"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+			"<cmd>Lspsaga diagnostic_jump_prev<cr>",
 			"Prev Diagnostic",
 		},
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-		S = {
-			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-			"Workspace Symbols",
-		},
+		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
+		s = { "<cmd>SymbolsOutline<cr>", "Symbols" },
+		S = { "<cmd>Telescope lsp_document_symbols<cr>", "Symbols Search" },
 	},
 
 	s = {
 		name = "Search",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+		d = { "<cmd>Telescope dap<cr>", "DAP" },
 		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
@@ -195,3 +222,20 @@ local mappings = {
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
+
+local keymap_v = {
+	d = {
+		name = "Debug",
+		e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+	},
+}
+
+local v_opts = {
+	mode = "v", -- NORMAL mode
+	prefix = "<leader>",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+}
+which_key.register(keymap_v, v_opts)

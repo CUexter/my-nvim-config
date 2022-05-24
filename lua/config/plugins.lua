@@ -156,7 +156,7 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use({ "ahmedkhalf/project.nvim" })
+	use("ahmedkhalf/project.nvim")
 
 	use({
 		"lewis6991/impatient.nvim",
@@ -166,7 +166,39 @@ return packer.startup(function(use)
 	})
 
 	use("windwp/nvim-ts-autotag")
+	use("simrat39/symbols-outline.nvim")
 
+	use({
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").setup({
+				toggle_key = "<C-k>",
+			})
+		end,
+	})
+
+	use("rcarriga/nvim-notify")
+
+	use({
+		"tami5/lspsaga.nvim",
+		config = function()
+			require("lspsaga").init_lsp_saga()
+		end,
+	})
+
+	-- dap Debugging for neovim
+	use("mfussenegger/nvim-dap")
+	use("mfussenegger/nvim-dap-python")
+	use({ "jbyuki/one-small-step-for-vimkind", module = "osv" })
+	use("rcarriga/nvim-dap-ui")
+	use({ "Pocco81/dap-buddy.nvim", commit = "24923c3819a450a772bb8f675926d530e829665f" })
+	use("nvim-telescope/telescope-dap.nvim")
+	use("theHamsta/nvim-dap-virtual-text")
+
+	use("RRethy/nvim-treesitter-endwise")
+	use("RRethy/vim-illuminate")
+
+	use("b0o/SchemaStore.nvim")
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

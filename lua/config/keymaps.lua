@@ -1,7 +1,5 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
@@ -31,38 +29,12 @@ keymap("n", "K", "<cmd>BufferLineCycleNext <CR>", opts)
 keymap("n", "L", "<cmd>BufferLineMoveNext <CR>", opts)
 
 keymap("n", "gs ", "<cmd>HopPattern<CR>", opts)
-keymap(
-	"n",
-	"f",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-	opts
-)
-keymap(
-	"n",
-	"F",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-	opts
-)
-keymap(
-	"o",
-	"f",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-	opts
-)
-keymap(
-	"o",
-	"F",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-	opts
-)
-keymap("", "t", "<cmd>HopChar1CurrentLineAC<cr>", opts)
-keymap("", "T", "<cmd>HopChar1CurrentLineBC<cr>", opts)
 
 vim.keymap.set({ "n", "o" }, "s", "<cmd>HopChar2AC<cr>", opts)
 vim.keymap.set({ "n", "o" }, "S", "<cmd>HopChar2BC<cr>", opts)
 
-keymap("n", "gj", "<cmd>HopLineStartAC<cr>", opts)
-keymap("n", "gk", "<cmd>HopLineStartBC<cr>", opts)
+vim.keymap.set({ "n", "o", "v" }, "gj", "<cmd>HopLineStartAC<cr>", opts)
+vim.keymap.set({ "n", "o", "v" }, "gk", "<cmd>HopLineStartBC<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", "<cmd>resize -2<CR>", opts)
@@ -88,6 +60,9 @@ keymap("x", "<A-j>", "<cmd>move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", "<cmd>move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
+
+-- local term_opts = { silent = true }
+
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)

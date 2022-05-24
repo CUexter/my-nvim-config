@@ -20,4 +20,7 @@ configs.setup({
 	autotag = {
 		enable = true,
 	},
+	endise = {
+		enable = true,
+	},
 })
