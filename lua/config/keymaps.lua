@@ -28,7 +28,7 @@ keymap("n", "<Tab>", "<cmd>BufferLineCycleNext <CR>", opts)
 keymap("n", "K", "<cmd>BufferLineCycleNext <CR>", opts)
 keymap("n", "L", "<cmd>BufferLineMoveNext <CR>", opts)
 
-keymap("n", "gs ", "<cmd>HopPattern<CR>", opts)
+vim.keymap.set({ "n", "o" }, "gs ", "<cmd>HopPattern<cr>", opts)
 
 vim.keymap.set({ "n", "o" }, "s", "<cmd>HopChar2AC<cr>", opts)
 vim.keymap.set({ "n", "o" }, "S", "<cmd>HopChar2BC<cr>", opts)

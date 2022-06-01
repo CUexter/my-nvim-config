@@ -24,4 +24,8 @@ vim.cmd([[
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
+  augroup lspsaga_filetypes
+    autocmd!
+    autocmd FileType LspsagaHover,LspsagaCodeAction,LspsagaRename,LspsagaSignatureHelp,LspsagaFinder,LspsagaDiagnostic nnoremap <buffer><nowait><silent> <Esc> <cmd>close!<cr>
+  augroup END
 ]])

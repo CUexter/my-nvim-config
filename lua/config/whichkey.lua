@@ -167,29 +167,25 @@ local mappings = {
 
 	l = {
 		name = "LSP",
-		a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
-		t = {
+		a = { "<cmd>CodeActionMenu<cr>", "Code Action" },
+		d = {
 			"<cmd>TroubleToggle<cr>",
 			"Trouble",
-		},
-		d = {
-			"<cmd>Lspsaga preview_definition<cr>",
-			"Definition",
 		},
 
 		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = {
-			"<cmd>Lspsaga diagnostic_jump_next<CR>",
+			"<cmd>lua vim.lsp.diagnostic.goto_next()<cr>",
 			"Next Diagnostic",
 		},
 		k = {
-			"<cmd>Lspsaga diagnostic_jump_prev<cr>",
+			"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
 			"Prev Diagnostic",
 		},
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+		q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
 		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		s = { "<cmd>SymbolsOutline<cr>", "Symbols" },
 		S = { "<cmd>Telescope lsp_document_symbols<cr>", "Symbols Search" },
@@ -208,11 +204,18 @@ local mappings = {
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 	},
 
+	o = {
+		name = "open",
+		t = { "<cmd>ToggleTerm<cr>", "Horizontal" },
+		e = { "<cmd>NvimTreeToggle<cr>", "Horizontal" },
+	},
+
 	t = {
 		name = "Terminal",
 		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
 		d = { "<cmd>lua _DISK_TOGGLE()<cr>", "Diskonaut" },
 		g = { "<cmd>lua _GOTOP_TOGGLE()<cr>", "Gotop" },
+		G = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Python" },
 		p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
 		t = { "<cmd>ToggleTerm<cr>", "Horizontal" },
@@ -228,10 +231,15 @@ local keymap_v = {
 		name = "Debug",
 		e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
 	},
+	l = {
+		name = "LSP",
+		a = { ":<C-U>CodeActionMenu<cr>", "Code Action" },
+		r = { "<cmd>lua vim.lsp.buf.range_formatting<cr>", "Format selection" },
+	},
 }
 
 local v_opts = {
-	mode = "v", -- NORMAL mode
+	mode = "v", -- VISUAL mode
 	prefix = "<leader>",
 	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
 	silent = true, -- use `silent` when creating keymaps
@@ -239,3 +247,5 @@ local v_opts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 which_key.register(keymap_v, v_opts)
+
+require("config.keymap.rust")

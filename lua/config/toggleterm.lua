@@ -56,6 +56,12 @@ function _GOTOP_TOGGLE()
 	gotop:toggle()
 end
 
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+
+function _LAZYGIT_TOGGLE()
+	lazygit:toggle()
+end
+
 local python = Terminal:new({ cmd = "python", hidden = true, direction = "float" })
 
 function _PYTHON_TOGGLE()

@@ -67,7 +67,6 @@ return packer.startup(function(use)
 	-- use "hrsh7th/cmp-buffer" -- buffer completions
 	-- use "hrsh7th/cmp-path" -- path completions
 	-- use "hrsh7th/cmp-cmdline" -- cmdline completions
-	-- use "saadparwaiz1/cmp_luasnip" -- snippet completions
 	--
 	-- use "L3MON4D3/LuaSnip" --snippet engine
 	-- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
@@ -152,7 +151,7 @@ return packer.startup(function(use)
 	use({
 		"echasnovski/mini.nvim",
 		config = function()
-			require("mini.surround").setup()
+			require("mini.surround").setup({})
 		end,
 	})
 
@@ -179,13 +178,6 @@ return packer.startup(function(use)
 
 	use("rcarriga/nvim-notify")
 
-	use({
-		"tami5/lspsaga.nvim",
-		config = function()
-			require("lspsaga").init_lsp_saga()
-		end,
-	})
-
 	-- dap Debugging for neovim
 	use("mfussenegger/nvim-dap")
 	use("mfussenegger/nvim-dap-python")
@@ -199,6 +191,51 @@ return packer.startup(function(use)
 	use("RRethy/vim-illuminate")
 
 	use("b0o/SchemaStore.nvim")
+
+	use({
+		"ThePrimeagen/refactoring.nvim",
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+	})
+
+	use({
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup({})
+		end,
+	})
+
+	-- use({
+	-- 	"filipdutescu/renamer.nvim",
+	-- 	branch = "master",
+	-- 	requires = { { "nvim-lua/plenary.nvim" } },
+	-- 	config = function()
+	-- 		require("renamer").setup({})
+	-- 	end,
+	-- })
+	-- use("nvim-lua/lsp-status.nvim")
+	use("folke/lua-dev.nvim")
+	use({
+		"weilbith/nvim-code-action-menu",
+		cmd = "CodeActionMenu",
+	})
+
+	-- use({
+	-- 	"ray-x/navigator.lua",
+	-- 	requires = {
+	-- 		{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+	-- 		{ "neovim/nvim-lspconfig" },
+	-- 	},
+	-- })
+	-- use("simrat39/rust-tools.nvim")
+	use({
+		"tami5/lspsaga.nvim",
+	})
+	use({
+		"jubnzv/virtual-types.nvim",
+	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

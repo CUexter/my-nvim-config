@@ -52,7 +52,8 @@ local function configure_debuggers()
 	require("config.debug.lua").setup()
 	require("config.debug.python").setup()
 	require("config.debug.rust").setup()
-	-- require("config.dap.go").setup()
+	require("config.debug.react").setup()
+	require("config.debug.node").setup()
 end
 
 local function setup()

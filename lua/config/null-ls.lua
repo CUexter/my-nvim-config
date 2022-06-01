@@ -1,13 +1,32 @@
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 require("null-ls").setup({
 	sources = {
+		-- code action
+		require("null-ls").builtins.code_actions.shellcheck,
+		require("null-ls").builtins.code_actions.eslint_d.with({
+			cwd = function()
+				return vim.loop.cwd()
+			end,
+		}),
+		-- require("null-ls").builtins.code_actions.refactoring,
 		-- formatting
 		require("null-ls").builtins.formatting.stylua,
 		require("null-ls").builtins.formatting.prettier,
 		require("null-ls").builtins.formatting.shfmt,
 		require("null-ls").builtins.formatting.stylelint,
+		require("null-ls").builtins.formatting.eslint_d.with({
+			cwd = function()
+				return vim.loop.cwd()
+			end,
+		}),
+
 		-- diagnostics
-		require("null-ls").builtins.diagnostics.eslint,
+		require("null-ls").builtins.diagnostics.eslint_d.with({
+			cwd = function()
+				return vim.loop.cwd()
+			end,
+		}),
+		require("null-ls").builtins.diagnostics.actionlint,
 		-- completion
 		-- require("null-ls").builtins.completion.spell,
 	},
@@ -24,4 +43,5 @@ require("null-ls").setup({
 			})
 		end
 	end,
+	-- debug = true,
 })
