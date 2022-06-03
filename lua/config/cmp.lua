@@ -198,36 +198,6 @@ cmp.setup.filetype("gitcommit", {
 	}),
 })
 
-cmp.setup.filetype("NeogitCommitMessage", {
-
-	formatting = {
-		fields = { "kind", "abbr", "menu" },
-		format = lspkind.cmp_format({
-			mode = "symbol_text",
-			maxwidth = 40,
-			before = function(entry, vim_item)
-				vim_item.kind = lspkind.presets.default[vim_item.kind]
-
-				local menu = ({
-					cmp_git = "[Git]",
-					conventionalcommits = "[CC]",
-				})[entry.source.name]
-
-				vim_item.menu = menu
-
-				return vim_item
-			end,
-		}),
-	},
-
-	sources = cmp.config.sources({
-		-- { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
-		{ name = "conventionalcommits" },
-	}, {
-		{ name = "buffer" },
-	}),
-})
-
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline("/", {
 	mapping = cmp.mapping.preset.cmdline(),
