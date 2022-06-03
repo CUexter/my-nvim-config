@@ -36,6 +36,7 @@ local function configure_exts()
 	})
 
 	local dap, dapui = require("dap"), require("dapui")
+	require("dap.ext.vscode").load_launchjs()
 	dapui.setup() -- use default
 	dap.listeners.after.event_initialized["dapui_config"] = function()
 		dapui.open()
@@ -49,11 +50,11 @@ local function configure_exts()
 end
 
 local function configure_debuggers()
-	require("config.debug.lua").setup()
-	require("config.debug.python").setup()
-	require("config.debug.rust").setup()
-	require("config.debug.react").setup()
-	require("config.debug.node").setup()
+	require("config.debug.settings.lua").setup()
+	require("config.debug.settings.python").setup()
+	require("config.debug.settings.rust").setup()
+	require("config.debug.settings.react").setup()
+	require("config.debug.settings.node").setup()
 end
 
 local function setup()

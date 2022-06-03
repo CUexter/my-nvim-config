@@ -95,6 +95,14 @@ return packer.startup(function(use)
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	})
+
+	use({
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			require("telescope").load_extension("frecency")
+		end,
+		requires = { "tami5/sqlite.lua" },
+	})
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -239,13 +247,47 @@ return packer.startup(function(use)
 	-- 		{ "neovim/nvim-lspconfig" },
 	-- 	},
 	-- })
-	-- use("simrat39/rust-tools.nvim")
+	use("simrat39/rust-tools.nvim")
+
 	use({
 		"tami5/lspsaga.nvim",
 	})
 	use({
 		"jubnzv/virtual-types.nvim",
 	})
+
+	-- cmp plugins
+	use("hrsh7th/nvim-cmp") -- The completion plugin
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-nvim-lsp-signature-help")
+	use("hrsh7th/cmp-buffer") -- buffer completions
+	use("hrsh7th/cmp-path") -- path completions
+	use("hrsh7th/cmp-cmdline") -- cmdline completions
+	-- use("quangnguyen30192/cmp-nvim-ultisnips")
+	use("saadparwaiz1/cmp_luasnip") -- snippet completions
+	use("delphinus/cmp-ctags")
+	use("rcarriga/cmp-dap")
+	use({
+		"tzachar/cmp-tabnine",
+		run = "./install.sh",
+		requires = "hrsh7th/nvim-cmp",
+	})
+	use("David-Kunz/cmp-npm")
+	use("onsails/lspkind.nvim")
+	use("ray-x/cmp-treesitter")
+	use("davidsierradz/cmp-conventionalcommits")
+
+	-- snippets
+	-- use("SirVer/ultisnips")
+	use("L3MON4D3/LuaSnip") --snippet engine
+	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+
+	use({
+		"jose-elias-alvarez/nvim-lsp-ts-utils",
+	})
+	use("nvim-telescope/telescope-ui-select.nvim")
+
+	use("p00f/clangd_extensions.nvim")
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

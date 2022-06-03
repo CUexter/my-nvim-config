@@ -5,10 +5,12 @@ require("config.colorscheme")
 require("config.plugins")
 require("config.windows")
 
-require("config.coq")
+-- require("config.coq")
 require("config.lspsaga")
 require("config.lsp")
 require("config.treesitter")
+require("config.cmp")
+require("config.tabnine")
 
 require("config.whichkey")
 
@@ -29,5 +31,3 @@ require("config.debug")
 require("config.gitsigns")
 require("config.neogit")
 require("config.diffview")
-
--- require("config.rust-tools")

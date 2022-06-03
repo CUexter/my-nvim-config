@@ -11,6 +11,7 @@ telescope.setup({
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
+		file_ignore_patterns = { "node_modules", "*cache*", "target" },
 
 		mappings = {
 			i = {
@@ -93,6 +94,11 @@ telescope.setup({
 		--   extension_config_key = value,
 		-- }
 		-- please take a look at the readme of the extension you want to configure
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown({
+				-- even more opts
+			}),
+		},
 		file_browser = {
 			theme = "ivy",
 		},
@@ -100,4 +106,5 @@ telescope.setup({
 })
 
 telescope.load_extension("file_browser")
+telescope.load_extension("ui-select")
 telescope.load_extension("emoji")

@@ -88,15 +88,25 @@ M.on_attach = function(client, bufnr)
 	require("virtualtypes").on_attach()
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
+	vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local status_ok, coq = pcall(require, "coq")
+local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
 	return
 end
 
-M.capabilities = coq.lsp_ensure_capabilities(capabilities)
+M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+
+-- local status_ok, coq = pcall(require, "coq")
+-- if not status_ok then
+-- 	return
+-- end
+--
+-- M.capabilities = coq.lsp_ensure_capabilities(capabilities)
 
 return M

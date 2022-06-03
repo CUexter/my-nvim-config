@@ -27,9 +27,65 @@ lsp_installer.on_server_ready(function(server)
 		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
 	end
 
-	if server.name == "rust-analyzer" then
-		local rust_opts = require("config.lsp.settings.rust-analyzer")
-		opts = vim.tbl_deep_extend("force", rust_opts, opts)
+	if server.name == "tsserver" then
+		local ts_opts = require("config.lsp.settings.tsserver")
+		opts = vim.tbl_deep_extend("keep", ts_opts, opts)
+	end
+
+	if server.name == "rust_analyzer" then
+		require("rust-tools").setup(require("config.rust_tools"))
+		return
+	end
+
+	if server.name == "clangd" then
+		require("clangd_extensions").setup({
+			server = {
+				on_attach = function(client, bufnr)
+					local which_key = require("which-key")
+
+					local whichkey_nopts = {
+						mode = "n", -- NORMAL mode
+						prefix = "<leader>",
+						buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+						silent = true, -- use `silent` when creating keymaps
+						noremap = true, -- use `noremap` when creating keymaps
+						nowait = true, -- use `nowait` when creating keymaps
+					}
+
+					local n_mappings = {
+						m = {
+							name = "Clangd",
+							h = { "<cmd>ClangdToggleInlayHints<cr>", "Toggle Inlay Hints" },
+							t = { "<cmd>ClangdTypeHierarchy<cr>", "Type Hierarchy" },
+							s = { "<cmd>ClangdSymbolInfo<cr>", "Symbol Info" },
+							m = { "<cmd>ClangdMemoryUsage<cr>", "Memory Usage" },
+						},
+					}
+
+					which_key.register(n_mappings, whichkey_nopts)
+
+					local v_opts = {
+						mode = "v", -- Visual mode
+						prefix = "<leader>",
+						buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+						silent = true, -- use `silent` when creating keymaps
+						noremap = true, -- use `noremap` when creating keymaps
+						nowait = true, -- use `nowait` when creating keymaps
+					}
+
+					local v_mappings = {
+						m = {
+							name = "Clangd",
+							a = { "<cmd>ClangdAST<cr>", "AST" },
+						},
+					}
+					which_key.register(v_mappings, v_opts)
+					opts.on_attach(client, bufnr)
+				end,
+				capabilities = opts.capabilities,
+			},
+		})
+		return
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function.

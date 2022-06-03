@@ -93,6 +93,10 @@ local mappings = {
 		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Find files",
 	},
+	["r"] = {
+		"<cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+		"Find recent files",
+	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
@@ -196,6 +200,7 @@ local mappings = {
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		d = { "<cmd>Telescope dap<cr>", "DAP" },
+		e = { "<cmd>Telescope emoji<cr>", "Emoji" },
 		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
@@ -247,5 +252,3 @@ local v_opts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 which_key.register(keymap_v, v_opts)
-
-require("config.keymap.rust")
