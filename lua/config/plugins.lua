@@ -90,7 +90,11 @@ return packer.startup(function(use)
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-media-files.nvim")
-
+	use("xiyaowong/telescope-emoji.nvim")
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+	})
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -118,11 +122,6 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-tree.lua")
 
 	use({
-		"lewis6991/gitsigns.nvim",
-		-- tag = 'release' -- To use the latest release
-	})
-
-	use({
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
@@ -134,8 +133,19 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+	use({ "TimUntersberger/neogit", requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" } })
+	use({
+		"lewis6991/gitsigns.nvim",
+		-- tag = 'release' -- To use the latest release
+	})
 	use("akinsho/toggleterm.nvim")
+	use({
+		"akinsho/git-conflict.nvim",
+		config = function()
+			require("git-conflict").setup()
+		end,
+	})
+	use("tpope/vim-fugitive")
 
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
