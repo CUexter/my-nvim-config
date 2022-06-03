@@ -79,9 +79,9 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use({ "ms-jpq/coq_nvim", branch = "coq" })
-	use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
-	use({ "ms-jpq/coq.thirdparty", branch = "3p" })
+	-- use({ "ms-jpq/coq_nvim", branch = "coq" })
+	-- use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
+	-- use({ "ms-jpq/coq.thirdparty", branch = "3p" })
 
 	use("neovim/nvim-lspconfig") --enable LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
@@ -102,6 +102,9 @@ return packer.startup(function(use)
 			require("telescope").load_extension("frecency")
 		end,
 		requires = { "tami5/sqlite.lua" },
+	})
+	use({
+		"benfowler/telescope-luasnip.nvim",
 	})
 	-- Treesitter
 	use({

@@ -200,6 +200,7 @@ local mappings = {
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		d = { "<cmd>Telescope dap<cr>", "DAP" },
+		s = { "<cmd>Telescope luasnip<cr>", "Luasnip" },
 		e = { "<cmd>Telescope emoji<cr>", "Emoji" },
 		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },

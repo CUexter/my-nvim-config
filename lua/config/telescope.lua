@@ -103,9 +103,14 @@ telescope.setup({
 		file_browser = {
 			theme = "ivy",
 		},
+
+		luasnip = {
+			theme = "get_dropdown",
+		},
 	},
 })
 
 telescope.load_extension("file_browser")
 telescope.load_extension("ui-select")
 telescope.load_extension("emoji")
+telescope.load_extension("luasnip")
