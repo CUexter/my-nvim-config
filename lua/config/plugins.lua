@@ -288,6 +288,12 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-ui-select.nvim")
 
 	use("p00f/clangd_extensions.nvim")
+
+	-- Markdown
+
+	use("vim-pandoc/vim-pandoc")
+	use("vim-pandoc/vim-pandoc-syntax")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
