@@ -12,6 +12,8 @@ require("config.treesitter")
 require("config.cmp")
 require("config.tabnine")
 
+require("config.snip")
+
 require("config.whichkey")
 
 require("config.telescope")
@@ -31,3 +33,4 @@ require("config.debug")
 require("config.gitsigns")
 require("config.neogit")
 require("config.diffview")
+-- require("config.markdown")
