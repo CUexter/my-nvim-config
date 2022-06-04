@@ -62,6 +62,21 @@ local opts = {
 			require("config.lsp.handlers").on_attach(client, bufnr)
 		end,
 		capabilities = require("config.lsp.handlers").capabilities,
+		settings = {
+			["rust-analyzer"] = {
+				checkOnSave = {
+					allFeatures = true,
+					overrideCommand = {
+						"cargo",
+						"clippy",
+						"--workspace",
+						"--message-format=json",
+						"--all-targets",
+						"--all-features",
+					},
+				},
+			},
+		},
 	},
 	dap = {
 		adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),

@@ -1,2 +1,2 @@
-local luadev = require("lua-dev").setup({})
+local luadev = {}
 return luadev

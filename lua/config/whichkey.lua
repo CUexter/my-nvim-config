@@ -131,16 +131,20 @@ local mappings = {
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
 	},
 
-	r = {
-		name = "Reload",
-		s = { "<cmd>source ~/.config/nvim/snippets/init.lua<cr>", "snippets" },
-	},
+	-- r = {
+	-- 	name = "Reload",
+	-- 	s = { "<cmd>source ~/.config/nvim/snippets/init.lua<cr>", "snippets" },
+	-- },
 
+	r = {
+		"<cmd>Telescope oldfiles<cr>",
+		"Find recent files",
+	},
 	F = {
 		name = "Files",
 		e = { "<cmd>Telescope file_browser<CR>", "File Browser" },
 		r = {
-			"<cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+			"<cmd>Telescope oldfiles<cr",
 			"Find recent files",
 		},
 	},
@@ -148,6 +152,7 @@ local mappings = {
 	w = {
 		name = "Window",
 		v = { "<cmd>vsplit<cr>", "V-split" },
+		h = { "<cmd>split<cr>", "H-split" },
 		s = { "<cmd>split<cr>", "split" },
 		q = { "<cmd>q<cr>", "close window" },
 	},
@@ -231,7 +236,7 @@ local mappings = {
 			"Trouble",
 		},
 
-		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+		f = { "<cmd>lua vim.lsp.buf.format({async = true})<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = {
@@ -282,9 +287,6 @@ local mappings = {
 	},
 }
 
-which_key.setup(setup)
-which_key.register(mappings, opts)
-
 local keymap_v = {
 	d = {
 		name = "Debug",
@@ -293,7 +295,7 @@ local keymap_v = {
 	l = {
 		name = "LSP",
 		a = { ":<C-U>CodeActionMenu<cr>", "Code Action" },
-		r = { "<cmd>lua vim.lsp.buf.range_formatting<cr>", "Format selection" },
+		f = { "<cmd>lua vim.lsp.buf.range_formatting()<cr>", "Format selection" },
 	},
 }
 
@@ -305,4 +307,8 @@ local v_opts = {
 	noremap = true, -- use `noremap` when creating keymaps
 	nowait = true, -- use `nowait` when creating keymaps
 }
-which_key.register(keymap_v, v_opts)
+if not vim.g.started_by_firenvim then
+	which_key.setup(setup)
+	which_key.register(mappings, opts)
+	which_key.register(keymap_v, v_opts)
+end

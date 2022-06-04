@@ -63,13 +63,9 @@ return packer.startup(function(use)
 		end,
 	})
 
-	-- use "hrsh7th/nvim-cmp" -- The completion plugin
-	-- use "hrsh7th/cmp-buffer" -- buffer completions
-	-- use "hrsh7th/cmp-path" -- path completions
-	-- use "hrsh7th/cmp-cmdline" -- cmdline completions
 	--
-	-- use "L3MON4D3/LuaSnip" --snippet engine
-	-- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+	use("L3MON4D3/LuaSnip") --snippet engine
+	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
 	-- Commenter
 	use({
@@ -79,9 +75,9 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use({ "ms-jpq/coq_nvim", branch = "coq" })
-	use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
-	use({ "ms-jpq/coq.thirdparty", branch = "3p" })
+	-- use({ "ms-jpq/coq_nvim", branch = "coq" })
+	-- use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
+	-- use({ "ms-jpq/coq.thirdparty", branch = "3p" })
 
 	use("neovim/nvim-lspconfig") --enable LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
@@ -96,13 +92,6 @@ return packer.startup(function(use)
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	})
 
-	use({
-		"nvim-telescope/telescope-frecency.nvim",
-		config = function()
-			require("telescope").load_extension("frecency")
-		end,
-		requires = { "tami5/sqlite.lua" },
-	})
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -235,6 +224,7 @@ return packer.startup(function(use)
 	-- })
 	-- use("nvim-lua/lsp-status.nvim")
 	use("folke/lua-dev.nvim")
+
 	use({
 		"weilbith/nvim-code-action-menu",
 		cmd = "CodeActionMenu",
@@ -263,7 +253,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-buffer") -- buffer completions
 	use("hrsh7th/cmp-path") -- path completions
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	-- use("quangnguyen30192/cmp-nvim-ultisnips")
+	--[[ use("quangnguyen30192/cmp-nvim-ultisnips") ]]
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("delphinus/cmp-ctags")
 	use("rcarriga/cmp-dap")
@@ -273,14 +263,27 @@ return packer.startup(function(use)
 		requires = "hrsh7th/nvim-cmp",
 	})
 	use("David-Kunz/cmp-npm")
+	-- lsp icons
 	use("onsails/lspkind.nvim")
 	use("ray-x/cmp-treesitter")
 	use("davidsierradz/cmp-conventionalcommits")
 
 	-- snippets
-	-- use("SirVer/ultisnips")
-	use("L3MON4D3/LuaSnip") --snippet engine
-	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+
+	--[[ use({ ]]
+	--[[ 	"SirVer/ultisnips", ]]
+	--[[ 	requires = { { "honza/vim-snippets", rtp = "." } }, ]]
+	--[[ 	config = function() ]]
+	--[[ 		vim.g.UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)" ]]
+	--[[ 		vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)" ]]
+	--[[ 		vim.g.UltiSnipsJumpBackwardTrigger = "<Plug>(ultisnips_jump_backward)" ]]
+	--[[ 		vim.g.UltiSnipsListSnippets = "<c-x><c-s>" ]]
+	--[[ 		vim.g.UltiSnipsRemoveSelectModeMappings = 0 ]]
+	--[[ 	end, ]]
+	--[[ }) ]]
+	use("honza/vim-snippets") -- a bunch of snippets to use
+	-- use("L3MON4D3/LuaSnip") --snippet engine
+	-- use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
 	use({
 		"jose-elias-alvarez/nvim-lsp-ts-utils",
@@ -313,6 +316,20 @@ return packer.startup(function(use)
 			require("true-zen").setup()
 		end,
 	})
+
+	use({
+		"KadoBOT/cmp-plugins",
+	})
+
+	use({
+		"glacambre/firenvim",
+		run = function()
+			vim.fn["firenvim#install"](0)
+		end,
+	})
+
+	use({ "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" })
+	use({ "github/copilot.vim", run = ":Copilot setup" })
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

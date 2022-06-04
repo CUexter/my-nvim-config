@@ -4,10 +4,19 @@ if not status_ok then
 end
 
 local actions = require("telescope.actions")
+local telescopeConfig = require("telescope.config")
 
+local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+
+-- I want to search in hidden/dot files.
+table.insert(vimgrep_arguments, "--hidden")
+-- I don't want to search in the `.git` directory.
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!.git/*")
 telescope.setup({
 	defaults = {
 
+    vimgrep_arguments = vimgrep_arguments,
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
@@ -80,6 +89,7 @@ telescope.setup({
 			},
 		},
 	},
+	file_previewer = require("telescope.previewers").cat.new,
 	pickers = {
 		-- Default configuration for builtin pickers goes here:
 		-- picker_name = {
@@ -88,6 +98,9 @@ telescope.setup({
 		-- }
 		-- Now the picker_config_key will be applied every time you call this
 		-- builtin picker
+    find_files = {
+      find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
+    },
 		git_branches = {
 			mappings = {
 				i = {
