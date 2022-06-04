@@ -288,6 +288,11 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-ui-select.nvim")
 
 	use("p00f/clangd_extensions.nvim")
+
+	use({
+		"ldelossa/gh.nvim",
+		requires = { { "ldelossa/litee.nvim" } },
+	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
