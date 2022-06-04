@@ -79,9 +79,9 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use({ "ms-jpq/coq_nvim", branch = "coq" })
-	use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
-	use({ "ms-jpq/coq.thirdparty", branch = "3p" })
+	-- use({ "ms-jpq/coq_nvim", branch = "coq" })
+	-- use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
+	-- use({ "ms-jpq/coq.thirdparty", branch = "3p" })
 
 	use("neovim/nvim-lspconfig") --enable LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
@@ -263,8 +263,8 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-buffer") -- buffer completions
 	use("hrsh7th/cmp-path") -- path completions
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	-- use("quangnguyen30192/cmp-nvim-ultisnips")
-	use("saadparwaiz1/cmp_luasnip") -- snippet completions
+	use("quangnguyen30192/cmp-nvim-ultisnips")
+	-- use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("delphinus/cmp-ctags")
 	use("rcarriga/cmp-dap")
 	use({
@@ -278,9 +278,21 @@ return packer.startup(function(use)
 	use("davidsierradz/cmp-conventionalcommits")
 
 	-- snippets
-	-- use("SirVer/ultisnips")
-	use("L3MON4D3/LuaSnip") --snippet engine
-	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+
+	use({
+		"SirVer/ultisnips",
+		requires = { { "honza/vim-snippets", rtp = "." } },
+		config = function()
+			vim.g.UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+			vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
+			vim.g.UltiSnipsJumpBackwardTrigger = "<Plug>(ultisnips_jump_backward)"
+			vim.g.UltiSnipsListSnippets = "<c-x><c-s>"
+			vim.g.UltiSnipsRemoveSelectModeMappings = 0
+		end,
+	})
+	use("honza/vim-snippets") -- a bunch of snippets to use
+	-- use("L3MON4D3/LuaSnip") --snippet engine
+	-- use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
 	use({
 		"jose-elias-alvarez/nvim-lsp-ts-utils",

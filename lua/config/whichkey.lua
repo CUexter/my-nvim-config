@@ -131,11 +131,15 @@ local mappings = {
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
 	},
 
-	r = {
-		name = "Reload",
-		s = { "<cmd>source ~/.config/nvim/snippets/init.lua<cr>", "snippets" },
-	},
+	-- r = {
+	-- 	name = "Reload",
+	-- 	s = { "<cmd>source ~/.config/nvim/snippets/init.lua<cr>", "snippets" },
+	-- },
 
+	r = {
+		"<cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+		"Find recent files",
+	},
 	F = {
 		name = "Files",
 		e = { "<cmd>Telescope file_browser<CR>", "File Browser" },
