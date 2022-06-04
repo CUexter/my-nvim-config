@@ -13,6 +13,12 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.stylua,
 		require("null-ls").builtins.formatting.prettier,
 		require("null-ls").builtins.formatting.shfmt,
+		require("null-ls").builtins.formatting.markdownlint.with({
+			extra_filetypes = { "pandoc" },
+		}),
+		-- require("null-ls").builtins.formatting.mdformat.with({
+		-- 	extra_filetypes = { "pandoc" },
+		-- }),
 		require("null-ls").builtins.formatting.stylelint,
 		require("null-ls").builtins.formatting.eslint_d.with({
 			cwd = function()
@@ -27,6 +33,9 @@ require("null-ls").setup({
 			end,
 		}),
 		require("null-ls").builtins.diagnostics.actionlint,
+		require("null-ls").builtins.diagnostics.markdownlint.with({
+			extra_filetypes = { "pandoc" },
+		}),
 		-- completion
 		-- require("null-ls").builtins.completion.spell,
 	},

@@ -291,6 +291,31 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-ui-select.nvim")
 
 	use("p00f/clangd_extensions.nvim")
+
+	-- Markdown
+
+	use("vim-pandoc/vim-pandoc")
+	use("vim-pandoc/vim-pandoc-syntax")
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	})
+
+	-- Github
+	use({
+		"ldelossa/gh.nvim",
+		requires = { { "ldelossa/litee.nvim" } },
+	})
+
+	-- Zen
+	use({
+		"Pocco81/TrueZen.nvim",
+		config = function()
+			require("true-zen").setup()
+		end,
+	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
