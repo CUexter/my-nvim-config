@@ -305,6 +305,14 @@ return packer.startup(function(use)
 		"ldelossa/gh.nvim",
 		requires = { { "ldelossa/litee.nvim" } },
 	})
+
+	-- Zen
+	use({
+		"Pocco81/TrueZen.nvim",
+		config = function()
+			require("true-zen").setup()
+		end,
+	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
