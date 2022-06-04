@@ -294,6 +294,10 @@ return packer.startup(function(use)
 	use("vim-pandoc/vim-pandoc")
 	use("vim-pandoc/vim-pandoc-syntax")
 
+	use({
+		"ldelossa/gh.nvim",
+		requires = { { "ldelossa/litee.nvim" } },
+	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
