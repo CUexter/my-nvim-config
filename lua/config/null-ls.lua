@@ -16,9 +16,9 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.markdownlint.with({
 			extra_filetypes = { "pandoc" },
 		}),
-		require("null-ls").builtins.formatting.mdformat.with({
-			extra_filetypes = { "pandoc" },
-		}),
+		-- require("null-ls").builtins.formatting.mdformat.with({
+		-- 	extra_filetypes = { "pandoc" },
+		-- }),
 		require("null-ls").builtins.formatting.stylelint,
 		require("null-ls").builtins.formatting.eslint_d.with({
 			cwd = function()
