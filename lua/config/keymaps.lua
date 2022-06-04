@@ -1,7 +1,7 @@
 local opts = { noremap = true, silent = true }
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -16,10 +16,10 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
-vim.keymap.set({ "n", "i", "v", "x", "t", "c" }, "<C-W>h", "<cmd>lua require('config.windows').bwn('h')<CR>", opts)
-vim.keymap.set({ "n", "i", "v", "x", "t", "c" }, "<C-W>j", "<cmd>lua require('config.windows').bwn('j')<CR>", opts)
-vim.keymap.set({ "n", "i", "v", "x", "t", "c" }, "<C-W>k", "<cmd>lua require('config.windows').bwn('k')<CR>", opts)
-vim.keymap.set({ "n", "i", "v", "x", "t", "c" }, "<C-W>l", "<cmd>lua require('config.windows').bwn('l')<CR>", opts)
+keymap({ "n", "i", "v", "x", "t", "c" }, "<C-W>h", "<cmd>lua require('config.windows').bwn('h')<CR>", opts)
+keymap({ "n", "i", "v", "x", "t", "c" }, "<C-W>j", "<cmd>lua require('config.windows').bwn('j')<CR>", opts)
+keymap({ "n", "i", "v", "x", "t", "c" }, "<C-W>k", "<cmd>lua require('config.windows').bwn('k')<CR>", opts)
+keymap({ "n", "i", "v", "x", "t", "c" }, "<C-W>l", "<cmd>lua require('config.windows').bwn('l')<CR>", opts)
 
 keymap("n", "H", "<cmd>BufferLineMovePrev <CR>", opts)
 keymap("n", "J", "<cmd>BufferLineCyclePrev <CR>", opts)
@@ -28,13 +28,13 @@ keymap("n", "<Tab>", "<cmd>BufferLineCycleNext <CR>", opts)
 keymap("n", "K", "<cmd>BufferLineCycleNext <CR>", opts)
 keymap("n", "L", "<cmd>BufferLineMoveNext <CR>", opts)
 
-vim.keymap.set({ "n", "o" }, "gs ", "<cmd>HopPattern<cr>", opts)
+keymap({ "n", "o" }, "gs ", "<cmd>HopPattern<cr>", opts)
 
-vim.keymap.set({ "n", "o" }, "s", "<cmd>HopChar2AC<cr>", opts)
-vim.keymap.set({ "n", "o" }, "S", "<cmd>HopChar2BC<cr>", opts)
+keymap({ "n", "o" }, "s", "<cmd>HopChar2AC<cr>", opts)
+keymap({ "n", "o" }, "S", "<cmd>HopChar2BC<cr>", opts)
 
-vim.keymap.set({ "n", "o", "v" }, "gj", "<cmd>HopLineStartAC<cr>", opts)
-vim.keymap.set({ "n", "o", "v" }, "gk", "<cmd>HopLineStartBC<cr>", opts)
+keymap({ "n", "o", "v" }, "gj", "<cmd>HopLineStartAC<cr>", opts)
+keymap({ "n", "o", "v" }, "gk", "<cmd>HopLineStartBC<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", "<cmd>resize -2<CR>", opts)

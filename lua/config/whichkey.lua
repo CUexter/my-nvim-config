@@ -93,11 +93,7 @@ local mappings = {
 		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Find files",
 	},
-	["r"] = {
-		"<cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-		"Find recent files",
-	},
-	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+	["f"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
 	d = {
@@ -134,9 +130,18 @@ local mappings = {
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
 	},
 
-	f = {
+	r = {
+		name = "Reload",
+		s = { "<cmd>source ~/.config/nvim/snippets/init.lua<cr>", "snippets" },
+	},
+
+	F = {
 		name = "Files",
-		r = { "<cmd>Telescope file_browser<CR>", "File Browser" },
+		e = { "<cmd>Telescope file_browser<CR>", "File Browser" },
+		r = {
+			"<cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+			"Find recent files",
+		},
 	},
 
 	w = {
