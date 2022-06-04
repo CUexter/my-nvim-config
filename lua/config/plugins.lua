@@ -293,7 +293,14 @@ return packer.startup(function(use)
 
 	use("vim-pandoc/vim-pandoc")
 	use("vim-pandoc/vim-pandoc-syntax")
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	})
 
+	-- Github
 	use({
 		"ldelossa/gh.nvim",
 		requires = { { "ldelossa/litee.nvim" } },
