@@ -255,6 +255,8 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	--[[ use("quangnguyen30192/cmp-nvim-ultisnips") ]]
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
+	-- use("quangnguyen30192/cmp-nvim-ultisnips")
+	-- use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("delphinus/cmp-ctags")
 	use("rcarriga/cmp-dap")
 	use({
