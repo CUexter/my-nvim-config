@@ -38,6 +38,7 @@ lsp_installer.on_server_ready(function(server)
 	end
 
 	if server.name == "clangd" then
+		opts.capabilities.offsetEncoding = "utf-8"
 		require("clangd_extensions").setup({
 			server = {
 				on_attach = function(client, bufnr)

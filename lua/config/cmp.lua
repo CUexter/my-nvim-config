@@ -6,12 +6,12 @@ end
 local compare = require("cmp.config.compare")
 local lspkind = require("lspkind")
 
--- local snip_status_ok, luasnip = pcall(require, "luasnip")
--- if not snip_status_ok then
--- 	return
--- end
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then
+	return
+end
 
--- require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
@@ -19,33 +19,33 @@ local check_backspace = function()
 end
 
 --   פּ ﯟ   some other good icons
--- local kind_icons = {
--- 	Text = "",
--- 	Method = "m",
--- 	Function = "",
--- 	Constructor = "",
--- 	Field = "",
--- 	Variable = "",
--- 	Class = "",
--- 	Interface = "",
--- 	Module = "",
--- 	Property = "",
--- 	Unit = "",
--- 	Value = "",
--- 	Enum = "",
--- 	Keyword = "",
--- 	Snippet = "",
--- 	Color = "",
--- 	File = "",
--- 	Reference = "",
--- 	Folder = "",
--- 	EnumMember = "",
--- 	Constant = "",
--- 	Struct = "",
--- 	Event = "",
--- 	Operator = "",
--- 	TypeParameter = "",
--- }
+local kind_icons = {
+	Text = "",
+	Method = "m",
+	Function = "",
+	Constructor = "",
+	Field = "",
+	Variable = "",
+	Class = "",
+	Interface = "",
+	Module = "",
+	Property = "",
+	Unit = "",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
+}
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 -- within packer init {{{
 -- }}}
@@ -58,9 +58,9 @@ end
 cmp.setup({
 
 	snippet = {
-		expand = function(args) 
-      require("luasnip").lsp_expand(args.body) -- For `luasnip` users
-		end, 
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body) -- For `luasnip` users
+		end,
 	},
 	mapping = {
 		["<C-k>"] = cmp.mapping.select_prev_item(),

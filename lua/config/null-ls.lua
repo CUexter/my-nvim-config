@@ -28,7 +28,7 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.stylelint,
 		require("null-ls").builtins.formatting.black,
 		require("null-ls").builtins.formatting.isort,
-		--[[ require("null-ls").builtins.formatting.clang_format, ]]
+		require("null-ls").builtins.formatting.clang_format,
 		require("null-ls").builtins.formatting.eslint_d.with({
 			cwd = function()
 				return vim.loop.cwd()
