@@ -1,43 +1,19 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
-	print("nvim-lsp-installer not working")
-	return
-end
+require("mason").setup()
+require("mason-lspconfig").setup()
+local lspconfig = require("lspconfig")
+local opts = {
+	on_attach = require("config.lsp.handlers").on_attach,
+	capabilities = require("config.lsp.handlers").capabilities,
+}
 
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		on_attach = require("config.lsp.handlers").on_attach,
-		capabilities = require("config.lsp.handlers").capabilities,
-	}
+require("mason-lspconfig").setup_handlers({
+	function(server_name)
+		require("lspconfig")[server_name].setup(opts)
+	end,
 
-	if server.name == "jsonls" then
-		local jsonls_opts = require("config.lsp.settings.jsonls")
-		opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-	end
-
-	if server.name == "sumneko_lua" then
-		local sumneko_opts = require("config.lsp.settings.sumneko_lua")
-		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-	end
-
-	if server.name == "pyright" then
-		local pyright_opts = require("config.lsp.settings.pyright")
-		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-	end
-
-	if server.name == "tsserver" then
-		local ts_opts = require("config.lsp.settings.tsserver")
-		opts = vim.tbl_deep_extend("keep", ts_opts, opts)
-	end
-
-	if server.name == "rust_analyzer" then
-		require("rust-tools").setup(require("config.rust_tools"))
-		return
-	end
-
-	if server.name == "clangd" then
+	["clangd"] = function()
 		opts.capabilities.offsetEncoding = "utf-8"
 		require("clangd_extensions").setup({
 			server = {
@@ -86,10 +62,28 @@ lsp_installer.on_server_ready(function(server)
 				capabilities = opts.capabilities,
 			},
 		})
-		return
-	end
-
-	-- This setup() function is exactly the same as lspconfig's setup function.
-	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	server:setup(opts)
-end)
+	end,
+	["jsonls"] = function()
+		local jsonls_opts = require("config.lsp.settings.jsonls")
+		opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+		lspconfig.jsonls.setup(opts)
+	end,
+	["lua_ls"] = function()
+		local sumneko_opts = require("config.lsp.settings.sumneko_lua")
+		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+		lspconfig.lua_ls.setup(opts)
+	end,
+	["tsserver"] = function()
+		local ts_opts = require("config.lsp.settings.tsserver")
+		opts = vim.tbl_deep_extend("force", ts_opts, opts)
+		lspconfig.tsserver.setup(opts)
+	end,
+	["pyright"] = function()
+		local pyright_opts = require("config.lsp.settings.pyright")
+		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+		lspconfig.pyright.setup(opts)
+	end,
+	["rust_analyzer"] = function()
+		require("rust-tools").setup(require("config.rust_tools"))
+	end,
+})

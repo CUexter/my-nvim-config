@@ -238,11 +238,12 @@ local mappings = {
 
 		f = { "<cmd>lua vim.lsp.buf.format({async = true})<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
-		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+		I = { "<cmd>Mason<cr>", "Installer Info" },
 		j = {
 			"<cmd>lua vim.lsp.diagnostic.goto_next()<cr>",
 			"Next Diagnostic",
 		},
+		h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "hover selection" },
 		k = {
 			"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
 			"Prev Diagnostic",

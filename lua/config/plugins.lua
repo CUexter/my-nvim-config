@@ -80,7 +80,8 @@ return packer.startup(function(use)
 	-- use({ "ms-jpq/coq.thirdparty", branch = "3p" })
 
 	use("neovim/nvim-lspconfig") --enable LSP
-	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+	use("williamboman/mason.nvim") -- simple to use language server installer
+	use("williamboman/mason-lspconfig.nvim") -- simple to use language server installer
 	use("jose-elias-alvarez/null-ls.nvim")
 
 	-- Telescope
@@ -116,7 +117,7 @@ return packer.startup(function(use)
 	use("goolord/alpha-nvim")
 	use("nvim-lualine/lualine.nvim")
 
-	use("kyazdani42/nvim-tree.lua")
+	use({ "kyazdani42/nvim-tree.lua" })
 
 	use({
 		"folke/trouble.nvim",
@@ -332,8 +333,7 @@ return packer.startup(function(use)
 
 	use({ "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" })
 	use({ "github/copilot.vim", run = ":Copilot setup" })
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
+
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end
